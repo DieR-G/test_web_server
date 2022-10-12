@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+      integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+      integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+      crossorigin=""
+    ></script>
+    <title>Calles de San Salvador</title>
+  </head>
+  <body>
+    <header id="header" class="container">
+      <div id="image" class="container">
+        <img
+          id="image"
+          src="{{ url_for('static', filename='map.svg') }}"
+          alt="map"
+        />
+      </div>
+      <div>
+        <h1 id="title">Calles de San Salvador</h1>
+      </div>
+    </header>
+    <div id="map-container" class="container">
+      <div id="map"></div>
+      <button id="show-button">Ver calles</button>
+    </div>
+  </body>
+  <script>
+    var map = L.map("map").setView([13.699421,-89.194180], 13);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    let ss_streets = null;//a possible json
+    ss_streets = JSON.parse('{{ geojson|tojson }}');
+    let show_button = document.getElementById('show-button');
+    show_button.addEventListener("click", () => {
+        if(ss_streets){
+            L.geoJSON(ss_streets).addTo(map)
+        }
+    })
+    
+  </script>
+</html>

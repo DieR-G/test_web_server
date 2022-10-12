@@ -1,0 +1,74 @@
+@font-face {
+  font-family: Open_Sans;
+  src: url(/static/fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+@font-face {
+  font-family: Secular_One;
+  src: url(/static/fonts/SecularOne-Regular.ttf);
+}
+
+.container {
+  display: flex;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#header {
+  justify-content: center;
+  background-color: #7386f9;
+  color: white;
+  font-family: Secular_One;
+  font-size: 1.5rem;
+  min-height: 100px;
+  width: 100vw;
+  align-items: center;
+  gap: 20px;
+  padding: 1em 0em;
+}
+
+#image {
+    justify-content: center;
+    height: 3em;
+    width: 5em;
+    color: white;
+}
+
+#map-container{
+    min-height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0;
+    padding: 2em 0;
+}
+
+#map{
+    height: 250px;
+    width: 400px;
+    margin: 3em 0;
+}
+
+#show-button{
+    background-color: #f97386;
+    border: 0;
+    color: white;
+    font-family: Open_Sans;
+    height: 3em;
+    width: 6em;
+    font-size: medium;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+#show-button:hover{
+    background-color: #e06879;
+}
+
+#show-button:active{
+    background-color: #fb9daa;
+}
