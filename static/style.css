@@ -53,6 +53,12 @@ body {
     margin: 3em 0;
 }
 
+#loader{
+  height: 100px;
+  width: 100px;
+  background-color: #fb9daa;
+}
+
 #show-button{
     background-color: #f97386;
     border: 0;

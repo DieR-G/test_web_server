@@ -36,25 +36,24 @@
     </header>
     <div id="map-container" class="container">
       <div id="map"></div>
+
       <button id="show-button">Ver calles</button>
     </div>
   </body>
   <script>
-    var map = L.map("map").setView([13.699421,-89.194180], 13);
+    var map = L.map("map").setView([13.699421, -89.19418], 13);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
-
-    let ss_streets = null;//a possible json
-    ss_streets = JSON.parse('{{ geojson|tojson }}');
-    let show_button = document.getElementById('show-button');
-    show_button.addEventListener("click", () => {
-        if(ss_streets){
-            L.geoJSON(ss_streets).addTo(map)
-        }
-    })
-    
+    let show_button = document.getElementById("show-button");
+    show_button.addEventListener("click", async () => {
+      let response = await fetch("/ss_streets");
+      if (response.ok) {
+        const ss_streets = await response.json();
+        L.geoJSON(ss_streets).addTo(map);
+      }
+    });
   </script>
 </html>
